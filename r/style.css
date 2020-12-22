@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Noto';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Open Sans Regular'),url('/r/noto.woff2') format('woff');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+#main-txtbox {
+
+width: 95%;
+border: 0px;
+padding-left: 3%;
+overflow: hidden;
+resize: none;
+font-family: 'Noto';
+color: #1A1A1B;
+font-size: 14px;
+line-height: 21px;
+font-weight: 400;
+max-width: 750px;
+padding-bottom: 500px;
+margin-top: 47px;
+}

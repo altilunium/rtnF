@@ -18,9 +18,6 @@ type Page struct {
 func (p *Page) save() error {
 	filename := "db/" + p.Title 
 	return ioutil.WriteFile(filename, []byte(p.Body), 0600)
-
-
-
 }
 
 
@@ -35,7 +32,6 @@ func loadPage(title string) (*Page, error) {
 
 
 func viewHandler(w http.ResponseWriter, r *http.Request, title string) {
-	
 		p, err := loadPage(title)
 		if err != nil {
 			http.Redirect(w, r, "/edit/"+title, http.StatusFound)
@@ -65,17 +61,6 @@ func editHandler(w http.ResponseWriter, r *http.Request, title string) {
 }
 
 
-func saveHandler(w http.ResponseWriter, r *http.Request, title string) {
-	body := r.FormValue("body")
-	p := &Page{Title: title, Body: template.HTML(body)}
-	err := p.save()
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-	http.Redirect(w, r, "/n/"+title, http.StatusFound)
-}
-
 
 var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
 
@@ -88,7 +73,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 }
 
 
-var validPath = regexp.MustCompile("^/(edit|save|n|r)/([a-zA-Z0-9]+)$")
+var validPath = regexp.MustCompile("^/(edit|save|n|r)/(.+)$")
 
 
 func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.HandlerFunc {
@@ -107,12 +92,6 @@ func main() {
 	
 	http.HandleFunc("/n/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
-	http.HandleFunc("/save/", makeHandler(saveHandler))
-	
-
 	http.Handle("/r/", http.StripPrefix("/r/", http.FileServer(http.Dir("./r"))))
-       
-
-
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

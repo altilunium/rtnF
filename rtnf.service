@@ -1,0 +1,9 @@
+[Unit]
+Description=rtnF Note
+
+[Service]
+WorkingDirectory=/insert/your/directory
+ExecStart=/insert/your/directory/rtnf
+
+[Install]
+WantedBy=multi-user.target

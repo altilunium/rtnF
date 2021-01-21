@@ -1,6 +1,8 @@
 # rtnF
 Note-taking app. Tested on Ubuntu 20.04 LTS (amd64)
 
+![Screenshot](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf-screenshot.png)
+
 ## How to use
 1. Run "rtnf". It's an executable file.
 2. Open "localhost:8080/edit/T", mark this link as a bookmark in your browser. It will be your gateway to access this application.

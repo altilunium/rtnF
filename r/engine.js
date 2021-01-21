@@ -100,7 +100,7 @@ function saveChanges(type){
 	if(type == 1) {
 		fetch(url,{method:'POST',body:post}).then((e)=>{
 		var oldTitle = document.title;
-		document.title = "Saved...";
+		document.title =  "*" + oldTitle;
 		setTimeout(function(){
 			var d = new Date()
 			var h = d.getHours()
@@ -132,7 +132,10 @@ function saveChanges(type){
 
 
 //3 detik sekali autosave
-var intervalID = setInterval(function(){saveChanges(1)},10000)
+var intervalID = setInterval(function(){saveChanges(1)},3000)
+
+//Autosave when close
+//Bisa di Firefox. Dilarang di Chromium -_-
 window.onbeforeunload = function(){
 	saveChanges(0);
 	return null;
@@ -142,7 +145,6 @@ window.onbeforeunload = function(){
 linkCloserCounter = 0
 
 document.onkeypress = function(e) {
-   
 
 	if (e.key == ']'){
 		linkCloserCounter = linkCloserCounter + 1
@@ -151,6 +153,7 @@ document.onkeypress = function(e) {
 		linkCloserCounter = 0
 		e.target.innerHTML = e.target.innerHTML.wiki2html()
     	setEndOfContenteditable(e.target)
+    	saveChanges(1)
 	}
 	else {
 		linkCloserCounter = 0
@@ -162,4 +165,7 @@ document.onkeypress = function(e) {
 	}
 }
 
-
+var textarea = document.getElementById("main-txtbox");
+textarea.spellcheck = false;
+textarea.focus();
+textarea.blur();

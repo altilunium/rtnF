@@ -41,47 +41,51 @@ function getCaretTopPoint() {
       }
     }
 
+var LinkNode;
+
+
+function htmlToElement(html) {
+  var template = document.createElement('template');
+  html = html.trim();
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
 
 String.prototype.wiki2html = wiki2html;
+String.prototype.wiki2html2 = wiki2html2;
 
+
+//Will fill LinkNode with <a> node
 function wiki2html(s) {
-
-	
     s = this;
-    
-
     s = s.replace(/\[\[(.*?)\]\]/g, function (m, l) { // internal link or image
         var p = l.split(/\|/);
         var link = p.shift();
+        LinkNode = '<a contenteditable="false" href="' + link + '">' + (p.length ? p.join('|') : link) + '</a>';
+      
+        //LinkNode = htmlToElement(constructedString);
         return '<a contenteditable="false" href="' + link + '">' + (p.length ? p.join('|') : link) + '</a>';
+        //return '';
     })
-
     return s
+}
 
-
+//Will remove the [[link]] syntax
+function wiki2html2(s) {
+    s = this;
+    s = s.replace(/\[\[(.*?)\]\]/g, function (m, l) { // internal link or image
+        var p = l.split(/\|/);
+        var link = p.shift();
+        //return '<a contenteditable="false" href="' + link + '">' + (p.length ? p.join('|') : link) + '</a>';
+        return '';
+    })
+    return s
 }
 
 
-function setEndOfContenteditable(contentEditableElement)
-{
-    var range,selection;
-    if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
-    {
-        range = document.createRange();//Create a range (a range is a like the selection but invisible)
-        range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
-        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-        selection = window.getSelection();//get the selection object (allows you to change selection)
-        selection.removeAllRanges();//remove any selections already made
-        selection.addRange(range);//make the range you have just created the visible selection
-    }
-    else if(document.selection)//IE 8 and lower
-    { 
-        range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
-        range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
-        range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-        range.select();//Select the range (make it the visible selection
-    }
-}
+
+
+
 
 
 //Asynchronous save changes
@@ -144,20 +148,91 @@ window.onbeforeunload = function(){
                                                                                                                                 
 linkCloserCounter = 0
 
+
+var a,b
+
+function pasteHtmlAtCaret(html) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() would be useful here but is
+            // non-standard and not supported in all browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
+    }
+}
+
+
+
+function moveCaret(win, charCount) {
+    var sel, range;
+    if (win.getSelection) {
+        sel = win.getSelection();
+        if (sel.rangeCount > 0) {
+            var textNode = sel.focusNode;
+            var newOffset = sel.focusOffset + charCount;
+            sel.collapse(textNode, Math.min(textNode.length, newOffset));
+        }
+    } else if ( (sel = win.document.selection) ) {
+        if (sel.type != "Control") {
+            range = sel.createRange();
+            range.move("character", charCount);
+            range.select();
+        }
+    }
+}
+
+
+
 document.onkeypress = function(e) {
 
 	if (e.key == ']'){
 		linkCloserCounter = linkCloserCounter + 1
 	}
 	else if ((linkCloserCounter == 2) && (e.charCode == 32)) {
-		linkCloserCounter = 0
-		e.target.innerHTML = e.target.innerHTML.wiki2html()
-    	setEndOfContenteditable(e.target)
-    	saveChanges(1)
+		 
+    linkCloserCounter = 0
+
+    a = window.getSelection().anchorNode;
+
+    //Save old text
+    var old_html = a.nodeValue
+    //Delete the [[this]] part
+    a.nodeValue = a.nodeValue.wiki2html2();
+    //Move the caret forward
+    moveCaret(window,a.nodeValue.length)
+    //Doing this will fill "LinkNode" to an <a> node
+    var c = old_html.wiki2html()
+    //Paste <a> node at current caret
+    pasteHtmlAtCaret(LinkNode);
+    //Async-save
+    saveChanges(1)
 	}
 	else {
 		linkCloserCounter = 0
-
 	}
 
 	if (getCaretTopPoint().top >= 400) {

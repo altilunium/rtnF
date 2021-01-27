@@ -106,10 +106,12 @@ function saveChanges(type){
 		var oldTitle = document.title;
 		document.title =  "*" + oldTitle;
 		setTimeout(function(){
+            /*
 			var d = new Date()
 			var h = d.getHours()
 			var m = d.getMinutes()
 			oldTitle = "["+h+":"+m + "] " + masterTitle
+            */
 			document.title = oldTitle
 		}, 1000);
 		lastSavedTextContent = textContent
@@ -125,7 +127,7 @@ function saveChanges(type){
 		var xhr = new XMLHttpRequest()
 		xhr.open('POST',url,false)
 		xhr.send(post)
-		document.title = "Saved!"
+		//document.title = "Saved!"
 	}
 
 	
@@ -208,7 +210,7 @@ function moveCaret(win, charCount) {
 
 
 document.onkeypress = function(e) {
-
+	
 	if (e.key == ']'){
 		linkCloserCounter = linkCloserCounter + 1
 	}

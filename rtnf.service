@@ -2,8 +2,8 @@
 Description=rtnF Note
 
 [Service]
-WorkingDirectory=/insert/your/directory
-ExecStart=/insert/your/directory/rtnf
+WorkingDirectory=/home/rtnf/Sofuto/gowiki
+ExecStart=/home/rtnf/Sofuto/gowiki/rtnf
 
 [Install]
 WantedBy=multi-user.target

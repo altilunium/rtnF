@@ -2,7 +2,7 @@
 Note-taking app. Tested on Ubuntu 20.04 LTS (amd64)
 
 ![Screenshot](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf-screenshot.png)
-![Screenshot](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf-screenshot2.jpeg)
+![Screenshot2](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf_screenshot2.jpeg)
 
 ## How to use
 1. Run "rtnf". It's an executable file.

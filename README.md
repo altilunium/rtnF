@@ -13,7 +13,7 @@ A web-based notetaking app. With WYSIWYG editor, support linking to other notes 
 6. If you want to automatically start this program on startup. Edit `rtnf.service` file, modify the content to match your directory. Place that file in `/etc/systemd/system`. Then, `sudo systemctl enable rtnf` 
 
 ### Note on Chromium-based browsers (Chrome, Edge, Chromium, Vivaldi, Brave)
-Open `about:flags`, search #allow-sync-xhr-in-page-dismissal, enable it. It will enable "autosave on quit" feature, for more safety. Firefox users dont have to do this since this feature is automatically enabled.
+Open `about:flags`, search #allow-sync-xhr-in-page-dismissal, enable it. It will enable "autosave on quit" feature, for more safety. Firefox users dont have to do this since this feature is automatically enabled. On chromium-based browsers, this have to be done manually due to Chrome's plan to disallow sync XHR in page dismissal (link for more details : https://www.chromestatus.com/feature/4664843055398912)
 
 ### Static Site Generator
 Once you finished writing your note on rtnF, you can export this as a single html file. Then you can host this file into the server as a static site, or you can send it to your peers as a html file. In fact, https://altilunium.github.io/ is built on rtnF. To enable this feature, [SingleFile](https://github.com/gildas-lormeau/SingleFile) dependency is required (available on Firefox and Chromium-based browsers). After installing SingleFile, here is the steps :

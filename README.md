@@ -13,5 +13,9 @@ A web-based notetaking app. With WYSIWYG editor, support linking to other notes 
 ### Note on Chromium-based browsers (Chrome, Edge, Chromium, Vivaldi, Brave)
 Open `about:flags`, search #allow-sync-xhr-in-page-dismissal, enable it. It will enable "autosave on quit" feature, for more safety. Firefox users dont have to do this since this feature is automatically enabled.
 
+### Static Site Generator
+Once you finished writing your note on rtnF, you can export this as a single html file. Then you can host this file into the server as a static site, or you can send it to your peers as a html file. To enable this feature [[https://github.com/gildas-lormeau/SingleFile|SingleFile]] dependency is required (
+
+
 ## Screenshots
 ![Screenshot2](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf_screenshot2.jpeg)

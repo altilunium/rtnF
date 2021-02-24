@@ -12,7 +12,7 @@ A web-based notetaking app. With WYSIWYG editor, support linking to other notes 
 5. You can also paste images to your note. Basic formatting shortcut (ctrl+b, ctrl+i, ctrl+u) also supported on Chromium based browser.
 6. If you want to automatically start this program on startup. Edit `rtnf.service` file, modify the content to match your directory. Place that file in `/etc/systemd/system`. Then, `sudo systemctl enable rtnf` 
 
-### Note on Chromium-based browsers (Chrome, Edge, Chromium, Vivaldi, Brave)
+### Note on Chromium-based browsers (Chrome, Edge, Chromium, Vivaldi, Opera, Brave)
 Open `about:flags`, search #allow-sync-xhr-in-page-dismissal, enable it. It will enable "autosave on quit" feature, for more safety. Firefox users dont have to do this since this feature is automatically enabled. On chromium-based browsers, this have to be done manually due to Chrome's plan to disallow sync XHR in page dismissal (link for more details : https://www.chromestatus.com/feature/4664843055398912)
 
 ### Static Site Generator

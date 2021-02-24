@@ -104,7 +104,7 @@ function saveChanges(type){
 	if(type == 1) {
 		fetch(url,{method:'POST',body:post}).then((e)=>{
 		var oldTitle = document.title;
-		document.title =  "*" + oldTitle;
+		document.title =  "*" + masterTitle;
 		setTimeout(function(){
             /*
 			var d = new Date()
@@ -112,7 +112,7 @@ function saveChanges(type){
 			var m = d.getMinutes()
 			oldTitle = "["+h+":"+m + "] " + masterTitle
             */
-			document.title = oldTitle
+			document.title = masterTitle
 		}, 1000);
 		lastSavedTextContent = textContent
 
@@ -138,7 +138,7 @@ function saveChanges(type){
 
 
 //3 detik sekali autosave
-var intervalID = setInterval(function(){saveChanges(1)},3000)
+var intervalID = setInterval(function(){saveChanges(1)},10000)
 
 //Autosave when close
 //Bisa di Firefox. Dilarang di Chromium -_-
@@ -257,7 +257,15 @@ document.onkeyup = function(e) {
         if(isEditable){
             textarea.focus();
             textarea.blur();
+            document.title =  "Unlocked";
         }
+        else{
+            document.title =  "Locked";
+        }
+
+        setTimeout(function(){
+            document.title = masterTitle
+        }, 1000);
 
         
     }

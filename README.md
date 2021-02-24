@@ -14,5 +14,4 @@ A web-based notetaking app. With WYSIWYG editor, support linking to other notes 
 Open `about:flags`, search #allow-sync-xhr-in-page-dismissal, enable it. It will enable "autosave on quit" feature, for more safety. Firefox users dont have to do this since this feature is automatically enabled.
 
 ## Screenshots
-![Screenshot](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf-screenshot.png)
 ![Screenshot2](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf_screenshot2.jpeg)

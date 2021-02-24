@@ -214,24 +214,21 @@ document.onkeypress = function(e) {
 	if (e.key == ']'){
 		linkCloserCounter = linkCloserCounter + 1
 	}
-	else if ((linkCloserCounter == 2) && (e.charCode == 32)) {
-		 
-    linkCloserCounter = 0
-
-    a = window.getSelection().anchorNode;
-
-    //Save old text
-    var old_html = a.nodeValue
-    //Delete the [[this]] part
-    a.nodeValue = a.nodeValue.wiki2html2();
-    //Move the caret forward
-    moveCaret(window,a.nodeValue.length)
-    //Doing this will fill "LinkNode" to an <a> node
-    var c = old_html.wiki2html()
-    //Paste <a> node at current caret
-    pasteHtmlAtCaret(LinkNode);
-    //Async-save
-    saveChanges(1)
+	else if ((linkCloserCounter == 2) && (e.charCode == 32)) { 
+        linkCloserCounter = 0
+        a = window.getSelection().anchorNode;
+        //Save old text
+        var old_html = a.nodeValue
+        //Delete the [[this]] part
+        a.nodeValue = a.nodeValue.wiki2html2();
+        //Move the caret forward
+        moveCaret(window,a.nodeValue.length)
+        //Doing this will fill "LinkNode" to an <a> node
+        var c = old_html.wiki2html()
+        //Paste <a> node at current caret
+        pasteHtmlAtCaret(LinkNode);
+        //Async-save
+        saveChanges(1)
 	}
 	else {
 		linkCloserCounter = 0
@@ -246,3 +243,22 @@ var textarea = document.getElementById("main-txtbox");
 textarea.spellcheck = false;
 textarea.focus();
 textarea.blur();
+
+
+
+var isEditable = true
+document.onkeyup = function(e) {
+  
+  //Ctrl+. : Create New Node
+  if (e.ctrlKey && e.which == 190) {
+
+        isEditable = !isEditable
+        textarea.contentEditable = isEditable
+        if(isEditable){
+            textarea.focus();
+            textarea.blur();
+        }
+
+        
+    }
+}

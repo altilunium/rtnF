@@ -91,6 +91,7 @@ function wiki2html2(s) {
 //Asynchronous save changes
 masterTitle = document.title;
 lastSavedTextContent = ""
+var xhr;
 
 function saveChanges(type){
 	var textContent = document.querySelector("#main-txtbox").innerHTML
@@ -124,9 +125,11 @@ function saveChanges(type){
 
 	}
 	else {
-		var xhr = new XMLHttpRequest()
+		xhr = new XMLHttpRequest()
+
 		xhr.open('POST',url,false)
 		xhr.send(post)
+
 		//document.title = "Saved!"
 	}
 
@@ -140,12 +143,22 @@ function saveChanges(type){
 //3 detik sekali autosave
 var intervalID = setInterval(function(){saveChanges(1)},10000)
 
+/*
 //Autosave when close
 //Bisa di Firefox. Dilarang di Chromium -_-
 window.onbeforeunload = function(){
 	saveChanges(0);
 	return null;
 }
+*/
+window.addEventListener('beforeunload', (event) =>{
+	saveChanges(0);
+	if(xhr.readyState == 4) return;
+	event.preventDefault();
+	event.returnValue = '';
+})
+
+
 
                                                                                                                                 
 linkCloserCounter = 0

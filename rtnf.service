@@ -3,7 +3,7 @@ Description=rtnF Note
 
 [Service]
 WorkingDirectory=/home/rtnf/Sofuto/gowiki
-ExecStart=/home/rtnf/Sofuto/gowiki/rtnf
+ExecStart=/home/rtnf/Sofuto/gowiki/rtnf s
 
 [Install]
 WantedBy=multi-user.target

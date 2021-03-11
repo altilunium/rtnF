@@ -2,7 +2,7 @@
 A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. Tested on Ubuntu 20.04 LTS (amd64)
 
 ## Screenshot
-![Screenshot2](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf_screenshot2.jpeg)
+![Screenshot2](https://raw.githubusercontent.com/altilunium/rtnF/main/rtnf_screenshot.jpeg)
 
 ## How to use
 1. If you are using Ubuntu 64bit, just run "rtnf". It's an executable file. If you are using Windows, run either "rtnf_win64.exe" or "rtnf_win32.exe" based on your OS. 

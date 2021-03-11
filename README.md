@@ -6,6 +6,7 @@ A web-based notetaking app. With WYSIWYG editor, support linking to other notes 
 
 ## Download
 Linux 64-bit : https://github.com/altilunium/rtnF/releases/download/v21.03/rtnf-v21.03.Linux64bit.zip
+
 Windows 64-bit : https://github.com/altilunium/rtnF/releases/download/v21.03/rtnf-v21.03.Win64bit.zip
 Windows version is still unstable. Please report if you found an issue.
 

@@ -6,6 +6,9 @@ import (
 	"log"
 	"net/http"
 	"regexp"
+	"runtime"
+	"os/exec"
+	"os"
 )
 
 
@@ -88,10 +91,50 @@ func makeHandler(fn func(http.ResponseWriter, *http.Request, string)) http.Handl
 }
 
 
+
+
+
+
 func main() {
 	
 	http.HandleFunc("/n/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.Handle("/r/", http.StripPrefix("/r/", http.FileServer(http.Dir("./r"))))
+	
+go func() {
+	for {
+		
+		resp, err := http.Get("http://localhost:8080/edit/T")
+		if err != nil {
+			continue
+		}
+		resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			continue
+		}
+		break
+	}
+	log.Println("rtnf started..")
+
+
+	if len(os.Args) == 1  {
+		switch runtime.GOOS {
+		case "linux":
+			exec.Command("xdg-open", "http://localhost:8080/edit/rtnf").Start()
+		case "windows":
+			exec.Command("rundll32", "url.dll,FileProtocolHandler","http://localhost:8080/edit/rtnf").Start()
+	}
+
+	}
+
+
+
+
+
+}()
+
+	
+	log.Println("Starting..")
 	log.Fatal(http.ListenAndServe(":8080", nil))
+	
 }

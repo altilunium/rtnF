@@ -1,5 +1,5 @@
 # rtnF
-A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. https://sy.altilunium.xyz
+A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. https://r.altilunium.xyz
 
 ## Updates
 Currently discontinued. Development moved to https://github.com/altilunium/rtnF2

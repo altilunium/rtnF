@@ -1,7 +1,7 @@
 # rtnF
-A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. Tested on Ubuntu 20.04 LTS (amd64). 
+A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. https://sy.altilunium.xyz
 
-##Updates
+## Updates
 Currently discontinued. Development moved to https://github.com/altilunium/rtnF2
 
 ## Screenshot

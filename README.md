@@ -1,7 +1,7 @@
 # rtnF
 A web-based notetaking app. With WYSIWYG editor, support linking to other notes (wikilink), image paste support, basic formatting, autosave feature. 
 
-https://github.com/altilunium/rtnF/releases/download/v21.10/rtnf-v21.10.Win64bit.zip
+[rtnF v21.10 (Windows 64 bit) download](https://github.com/altilunium/rtnF/releases/download/v21.10/rtnf-v21.10.Win64bit.zip)
 
 
 ## Screenshot

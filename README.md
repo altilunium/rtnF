@@ -22,6 +22,9 @@ Once you finished writing your note on rtnF, you can export this as a single htm
 3. Done. You can distribute that html file to your peers or store it on your webserver.
 4. To unlock your page, press Ctrl+. again
 
+### Whitepaper
+[Rancang Bangun Aplikasi Note-Taking Berbasis Wiki](https://www.researchgate.net/publication/353527090_Rancang_Bangun_Aplikasi_Note-Taking_Berbasis_Wiki) (in Indonesian)
+
 
 
 

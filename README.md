@@ -28,7 +28,7 @@ Once you finished writing your note on rtnF, you can export this as a single htm
 3. `./nssm.exe install rtnf`
 4. Set Application Path to rtnf_win64.exe , ok.
 5. Open Windows Services, right click on rtnf, start
-
+6. Open localhost:8080/edit/r in browser. Bookmark it. Now you can access rtnf by using this bookmark.
 ### Whitepaper
 [Rancang Bangun Aplikasi Note-Taking Berbasis Wiki](https://www.researchgate.net/publication/353527090_Rancang_Bangun_Aplikasi_Note-Taking_Berbasis_Wiki) (in Indonesian)
 
